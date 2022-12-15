@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from "react";
+import React, { useState} from "react";
 import { envoiEmail } from "../service/service";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './formulaire.css';
@@ -12,26 +12,23 @@ const Formulaire=()=>{
   
     const sendEmail = (e) => {
       e.preventDefault();
-      
+    
       envoiEmail({
         to: valueTo,
         object:valueObject,
         message:valueMessage,
     }).then(response => {
-       console.log(response.status)
         if(response.status === 200) {
+          
           setTo('');
           setObject('');
           setMessage('');
+          alert(`email envoyée ! `)
         }
     })
     
     };
-    useEffect(()=>{ 
-      setTo('');
-      setObject('');
-      setMessage('');
-  },[]);
+ 
     return(
       
       <div className=" contact-wrap card bg-white shadow-lg rounded-lg position-relative border- ">

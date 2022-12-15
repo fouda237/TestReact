@@ -1,12 +1,19 @@
-import axios from "axios";
-import {ICreateEmail}from '../type/type';
+import axios,{ AxiosError} from "axios";
+import { ICreateEmail } from "../type/type";
 const envoiEmail =async({to,object,message}:ICreateEmail)=>{
-     axios.post('http://localhost:8081/email',{
-            to,
-            object,
-            message,
-        },
-        ).then((response) => alert(`email envoyée ! ${response}`))
-        .catch((error) => alert(`non envoyée : ${error}`));
+    try{
+        return await axios.post(`${process.env.REACT_APP_API_URL}/email`,{
+                        to,
+                        object,
+                        message,
+        }  
+);
+    }catch(e){
+        const error = e as AxiosError
+        if (error){
+            alert(`non envoyée `)
+           console.log("error d'email")
+        }
+    }
 }
 export {envoiEmail};
