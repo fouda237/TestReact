@@ -20,7 +20,9 @@ const Formulaire=()=>{
     }).then(response => {
        console.log(response.status)
         if(response.status === 200) {
-           
+          setTo('');
+          setObject('');
+          setMessage('');
         }
     })
     
